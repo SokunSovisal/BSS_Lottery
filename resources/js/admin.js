@@ -20,7 +20,6 @@ if (token) {
 }
 
 
-window.jscookie = require('js-cookie');
 window.jsscrollbar = require('jquery.scrollbar');
 window.jsvalidate = require('jquery-validation');
 window.zbsmt = require('./bootstrap-material-design');

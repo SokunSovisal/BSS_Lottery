@@ -41,23 +41,19 @@
             <!-- Nav items -->
             <ul class="navbar-nav">
               <li class="nav-item">
-                <a class="nav-link active waves-effect" href="#navbar-dashboards" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-dashboards">
+                <a class="nav-link active waves-effect" href="{{route('admin.home')}}">
                   <i class="fa fa-home text-primary"></i>
                   <span class="nav-link-text">Dashboards</span>
                 </a>
-                <div class="collapse show" id="navbar-dashboards">
-                  <ul class="nav nav-sm flex-column">
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Dashboard</a>
-                    </li>
-                    <li class="nav-item">
-                      <a href="#" class="nav-link">Alternative</a>
-                    </li>
-                  </ul>
-                </div>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
+                <a class="nav-link waves-effect" href="{{route('admin.home')}}">
+                  <i class="fa fa-home text-primary"></i>
+                  <span class="nav-link-text khmerkoulen">ការគណនា</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link waves-effect" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="navbar-examples">
                   <i class="fa fa-copy text-orange"></i>
                   <span class="nav-link-text">Examples</span>
                 </a>
@@ -159,15 +155,22 @@
       <nav class="navbar navbar-top navbar-expand navbar-dark bg-primary border-bottom">
         <div class="container-fluid">
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              
+            <!-- Sidenav toggler -->
+            <div class="sidenav-toggler d-none d-xl-block mr-3 sidenav-toggler-dark" data-action="sidenav-unpin" data-target="#sidenav-main">
+              <div class="sidenav-toggler-inner">
+                <i class="sidenav-toggler-line"></i>
+                <i class="sidenav-toggler-line"></i>
+                <i class="sidenav-toggler-line"></i>
+              </div>
+            </div>
 
-          <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
-            <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
-              <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
-              <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Default</li>
-            </ol>
-          </nav>          
+            <nav aria-label="breadcrumb" class="d-none d-md-inline-block">
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Default</li>
+              </ol>
+            </nav>          
 
             <!-- Navbar links -->
             <ul class="navbar-nav align-items-center ml-md-auto">
@@ -208,7 +211,7 @@
                   </a>
                   <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        <i class="fa fa-sign-out-alt"></i>
+                        <i class="fa fa-sign-out-alt text-red"></i>
                         <span>{{ __('Logout') }}</span>
                     </a>
 
