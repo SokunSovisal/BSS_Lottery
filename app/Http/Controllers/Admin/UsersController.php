@@ -53,7 +53,7 @@ class UsersController extends Controller
 	public function create()
 	{
 		$this->data += [
-			'breadcrumb'=>'<li class="breadcrumb-item"><a href="'. route('admin.dashboard') .'"><i class="fa fa-home"></i> '.__('components.dashboard').'</a></li><li class="breadcrumb-item"><a href="'. route('admin.users.index') .'"><i class="fa fa-user-friends"></i> '.__('breadcrumb.users').'</li></a></li><li class="breadcrumb-item active"><i class="fa fa-plus"></i> បន្ថែមថ្មី</li>',
+			'breadcrumb'=>'<li class="breadcrumb-item"><a href="'. route('admin.dashboard') .'"><i class="fa fa-home"></i> '.__('components.dashboard').'</a></li><li class="breadcrumb-item"><a href="'. route('admin.users.index') .'"><i class="fa fa-user-friends"></i> '.__('breadcrumb.users').'</li></a></li><li class="breadcrumb-item active"><i class="fa fa-plus"></i> '.__('components.addNew').'</li>',
 		];
 		return view('admin.users.create',$this->data);
 	}
@@ -64,7 +64,7 @@ class UsersController extends Controller
 	 * @param  \Illuminate\Http\Request  $request
 	 * @return \Illuminate\Http\Response
 	 */
-	public function store(Request $request)
+	public function store(Request $r)
 	{
 		// Validate Post Data
 		$validator = Validator::make($r->all(), [
@@ -129,16 +129,13 @@ class UsersController extends Controller
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
-	public function update(Request $request, $id)
+	public function update(Request $r, $id)
 	{
 		// Validate Post Data
 		$validator = Validator::make($r->all(), [
 			'name' => 'required',
 			'phone' => 'required',
 			'gender' => 'required',
-			'position' => 'required',
-			'salary' => 'required',
-			'email' => 'required|email',
 		]);
 		if ($validator->fails()) {
 			return redirect()->back()

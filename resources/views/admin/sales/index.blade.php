@@ -3,11 +3,23 @@
 @section('css')
 	<style type="text/css">
 		table.calculator{
-			/*width: 100px;*/
-			border: 1px solid red;
+
+		}
+		table.calculator tr.font-size-normal td .btn{
+			font-size: 15px;
 		}
 		table.calculator tr td .btn{
 			border-radius: 2px;
+			font-size: 18px;
+		}
+		table.calculator tr td .btn i{
+			font-size: 14.5px;
+		}
+		table.calculator tr td{
+			min-width: 100px;
+		}
+		#input_source{
+			font-size: 25px;
 		}
 	</style>
 @endsection
@@ -18,17 +30,23 @@
 		<div class="container-fluid">
 			<form>
 				<div class="row justify-content-center">
-	        <div class="form-group col-sm-9">
+	        
+	        <div class="form-group col-sm-3">
+	          <label class="form-control-label" for="input_result">Button</label>
 	        	<table class="calculator">
+	        		<tr class="font-size-normal">
+	        			<td  colspan="1"><button class="btn btn-primary btn-block" onclick="getSign(' ')" type="button">Space</button></td>
+	        			<td  colspan="2"><button class="btn btn-primary btn-block" onclick="getSign('\n')" type="button">Enter</button></td>
+	        		</tr>
 	        		<tr>
-	        			<td><button class="btn btn-warning btn-block" onclick="getSign('*')" type="button">*</button></td>
-	        			<td><button class="btn btn-warning btn-block" onclick="getSign('x')" type="button">x</button></td>
-	        			<td><button class="btn btn-warning btn-block" onclick="getSign('>')" type="button">></button></td>
+	        			<td><button class="btn btn-warning btn-block" onclick="getSign('*')" type="button"><i class="fa fa-star-of-life"></i></button></td>
+	        			<td><button class="btn btn-warning btn-block" onclick="getSign('x')" type="button"><i class="fa fa-times"></i></button></td>
+	        			<td><button class="btn btn-warning btn-block" onclick="getSign('>')" type="button"><i class="fa fa-angle-right"></i></button></td>
 	        		</tr>
 	        		<tr>
 	        			<td><button class="btn btn-warning btn-block" onclick="getSign('.')" type="button">.</button></td>
-	        			<td><button class="btn btn-warning btn-block" onclick="getSign('|')" type="button">|</button></td>
-	        			<td><button class="btn btn-warning btn-block" onclick="getSign('=>')" type="button">=></button></td>
+	        			<td><button class="btn btn-warning btn-block" onclick="getSign('|')" type="button"><strong>|</strong></button></td>
+	        			<td><button class="btn btn-warning btn-block" onclick="getSign('=>')" type="button"><i class="fa fa-arrow-right"></i></button></td>
 	        		</tr>
 	        		<tr>
 	        			<td><button class="btn btn-info btn-block" onclick="getSign('1')" type="button">1</button></td>
@@ -46,22 +64,22 @@
 	        			<td><button class="btn btn-info btn-block" onclick="getSign('9')" type="button">9</button></td>
 	        		</tr>
 	        		<tr>
-	        			<td></td>
+	        			<td><button class="btn btn-danger btn-block" onclick="$('#input_source').val('')" type="button">C</button></td>
 	        			<td><button class="btn btn-info btn-block" onclick="getSign('0')" type="button">0</button></td>
-	        			<td></td>
+	        			<td><button class="btn btn-danger btn-block" onclick="delete_num()" type="button"><i class="fa fa-backspace"></i></button></td>
 	        		</tr>
 	        	</table>
 	        </div>
 	        <div class="form-group col-sm-4">
 	          <label class="form-control-label" for="input_source">Input</label>
-	          <textarea class="form-control rounded-0" id="input_source" rows="10" onkeyup="analyze_input(this.value)"></textarea>
+	          <textarea class="form-control rounded-0" id="input_source" style="height: 358px;" onkeyup="analyze_input(this.value)"></textarea>
 	        </div>
-	        <div class="form-group col-sm-2 text-center pt-8">
-	        	<span class="btn btn-primary"><i class="fa fa-angle-right"></i></span>
+	        <div class="form-group col-sm-1 text-center pt-9 mt-4">
+	        	<span class="btn btn-primary"><i class="fa fa-angle-double-right"></i></span>
 	        </div>
 	        <div class="form-group col-sm-4">
 	          <label class="form-control-label" for="input_result">Output</label>
-	          <textarea class="form-control rounded-0" id="input_result" rows="10"></textarea>
+	          <textarea class="form-control rounded-0" id="input_result" style="height: 358px;"></textarea>
 	        </div>
 				</div>
       </form>
@@ -71,8 +89,17 @@
 @endsection
 @section('js')
 	<script type="text/javascript">
-		
-		function getSign(sign) { $('#input_source').append(sign).focus(); }
+
+		$('#input_source').val('');
+
+		function getSign(sign) {
+			$('#input_source').val($('#input_source').val()+sign).focus();
+			analyze_input($('#input_source').val())
+		}
+
+		function delete_num (){
+	    $('#input_source').val($('#input_source').val().slice(0, -1));
+		}
 
 
 		function analyze_input(input_text){
@@ -122,16 +149,16 @@
 				}
 			}else if(input_text.indexOf("|")>0 && input_text.indexOf("||")<=0 && input_text.indexOf("|||")<=0){
 				v_ors_column_1 = true;	
-				alert('ors kbal');		
+				// alert('ors kbal');		
 			}else if(input_text.indexOf("||")>0 && input_text.indexOf("|||")<=0){
 				v_ors_column_2 = true;		
-				alert('ors kandal');	
+				// alert('ors kandal');	
 			}else if(input_text.indexOf("|||")>0){
 				v_ors_column_3 = true;		
-				alert('ors kon tuy');	
+				// alert('ors kon tuy');	
 			}else if(input_text.indexOf("==")>0){
 				v_ors_double = true;		
-				alert('ors double');	
+				// alert('ors double');	
 			}
 		}
 

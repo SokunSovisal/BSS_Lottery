@@ -9,7 +9,7 @@
 @section('content')
 	{!! Form::open(['url' => route('admin.users.update', $user->id)]) !!}
 		{{ Form::hidden('_method', 'PUT') }}
-		<section class="bg-white">
+		<section class="bg-white-content">
 			@component('comps.btnBack')
 				@slot('btnBack')
 					{{route('admin.users.index')}}
@@ -44,10 +44,14 @@
 								<input class="form-control nbr" type="text" name="phone" placeholder="phone" value="{{ $errors->has('phone') ? old('phone') : $user->phone }}" autocomplete="off" required="" />
 							</div>
 						</div>
+					</div><!-- /.column -->
+
+
+					<div class="col-sm-6">
 						<div class="col-sm-12">
 							<div class="form-group">
 								<label for="">{{ __('users.description') }}</label>
-								<textarea class="form-control nbr" name="description" style="height: 108px;" placeholder="description">{{ ((count($errors) > 0) ? old('description') : $user->description) }}</textarea>
+								<textarea class="form-control nbr" name="description" style="height: 245px;" placeholder="description">{{ ((count($errors) > 0) ? old('description') : $user->description) }}</textarea>
 							</div>
 						</div>
 					</div><!-- /.column -->

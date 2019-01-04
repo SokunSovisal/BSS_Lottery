@@ -12,8 +12,8 @@
 */
 Auth::routes();
 // Disable Registration Routes...
-Route::get('register', 'Auth\RegisterController@redirectRegister')->name('register');
-Route::post('register', 'Auth\RegisterController@redirectRegister');
+// Route::get('register', 'Auth\RegisterController@redirectRegister')->name('register');
+// Route::post('register', 'Auth\RegisterController@redirectRegister');
 
 // Disable Password Reset Routes...
 Route::get('password/reset', 'Auth\RegisterController@redirectRegister')->name('password.request');
