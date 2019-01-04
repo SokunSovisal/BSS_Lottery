@@ -7,12 +7,12 @@
 @endsection
 
 @section('content')
-	{!! Form::open(['url' => route('roles.update', $user->id)]) !!}
+	{!! Form::open(['url' => route('admin.roles.update', $user->id)]) !!}
 		{{ Form::hidden('_method', 'PUT') }}
-		<section class="bg-white">
+		<section class="bg-white-content">
 			@component('comps.btnBack')
 				@slot('btnBack')
-					{{route('users.index')}}
+					{{route('admin.roles.index')}}
 				@endslot
 			@endcomponent
 			<br/>

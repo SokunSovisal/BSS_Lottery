@@ -25,7 +25,7 @@ class UsersController extends Controller
 		$this->data=[
 			'm'=>'manage_users',
 			'sm'=>'users',
-			'title'=> __('breadcrumb.users'),
+			'title'=> __('components.users'),
 		];
 	}
 
@@ -37,7 +37,7 @@ class UsersController extends Controller
 	public function index()
 	{
 		$this->data += [
-			'breadcrumb'=>'<li class="breadcrumb-item"><a href="'. route('admin.dashboard') .'"><i class="fa fa-home"></i> '.__('components.dashboard').'</a></li><li class="breadcrumb-item active"><i class="fa fa-user-friends"></i> '.__('breadcrumb.users').'</li>',
+			'breadcrumb'=>'<li class="breadcrumb-item"><a href="'. route('admin.dashboard') .'"><i class="fa fa-home"></i> '.__('components.dashboard').'</a></li><li class="breadcrumb-item active"><i class="fa fa-user-friends"></i> '.__('components.users').'</li>',
 
 			// Select Data From Table
 			'users' => Users::orderBy('user_role_id', 'desc')->get(),
@@ -53,7 +53,7 @@ class UsersController extends Controller
 	public function create()
 	{
 		$this->data += [
-			'breadcrumb'=>'<li class="breadcrumb-item"><a href="'. route('admin.dashboard') .'"><i class="fa fa-home"></i> '.__('components.dashboard').'</a></li><li class="breadcrumb-item"><a href="'. route('admin.users.index') .'"><i class="fa fa-user-friends"></i> '.__('breadcrumb.users').'</li></a></li><li class="breadcrumb-item active"><i class="fa fa-plus"></i> '.__('components.addNew').'</li>',
+			'breadcrumb'=>'<li class="breadcrumb-item"><a href="'. route('admin.dashboard') .'"><i class="fa fa-home"></i> '.__('components.dashboard').'</a></li><li class="breadcrumb-item"><a href="'. route('admin.users.index') .'"><i class="fa fa-user-friends"></i> '.__('components.users').'</li></a></li><li class="breadcrumb-item active"><i class="fa fa-plus"></i> '.__('components.btnAdd').'</li>',
 		];
 		return view('admin.users.create',$this->data);
 	}
@@ -117,7 +117,7 @@ class UsersController extends Controller
 	{
 		$this->data+=[
 			'user' => Users::find($id),
-			'breadcrumb'=>'<li class="breadcrumb-item"><a href="'. route('admin.dashboard') .'"><i class="fa fa-home"></i> '.__('components.dashboard').'</a></li><li class="breadcrumb-item"><a href="'. route('admin.users.index') .'"><i class="fa fa-user-friends"></i> '.__('breadcrumb.users').'</a></li><li class="breadcrumb-item active"><i class="fa fa-pencil"></i> កែប្រែ៖ '. Users::find($id)->name.'</li>',
+			'breadcrumb'=>'<li class="breadcrumb-item"><a href="'. route('admin.dashboard') .'"><i class="fa fa-home"></i> '.__('components.dashboard').'</a></li><li class="breadcrumb-item"><a href="'. route('admin.users.index') .'"><i class="fa fa-user-friends"></i> '.__('components.users').'</a></li><li class="breadcrumb-item active"><i class="fa fa-pencil"></i> '.__('breadcrumb.edit').' '. Users::find($id)->name.'</li>',
 		];
 		return view('admin.users.edit',$this->data);
 	}
@@ -145,10 +145,7 @@ class UsersController extends Controller
 		// Update Item
 		$user = Users::find($id);
 		$user->name = $r->name;
-		$user->email = $r->email;
-		$user->salary = $r->salary;
 		$user->gender = $r->gender;
-		$user->position = $r->position;
 		$user->phone = $r->phone;
 		$user->description = $r->description;
 		$user->save();
@@ -162,7 +159,7 @@ class UsersController extends Controller
     $this->data+=[
 			// Select Data From Table
       'user' => Users::find($id),
-      'breadcrumb'=>'<li class="breadcrumb-item"><a href="'. route('admin.dashboard') .'"><i class="fa fa-home"></i> '.__('components.dashboard').'</a></li><li class="breadcrumb-item"><a href="'. route('admin.users.index') .'"><i class="fa fa-user-friends"></i> '.__('breadcrumb.users').'</a></li><li class="breadcrumb-item active"><i class="fa fa-image"></i>'.__('breadcrumb.image'). Users::find($id)->name.'</li>',
+      'breadcrumb'=>'<li class="breadcrumb-item"><a href="'. route('admin.dashboard') .'"><i class="fa fa-home"></i> '.__('components.dashboard').'</a></li><li class="breadcrumb-item"><a href="'. route('admin.users.index') .'"><i class="fa fa-user-friends"></i> '.__('components.users').'</a></li><li class="breadcrumb-item active"><i class="fa fa-image"></i>'.__('breadcrumb.image'). Users::find($id)->name.'</li>',
     ];
     return view('admin.users.image',$this->data);
 	}
@@ -207,7 +204,7 @@ class UsersController extends Controller
 	{
 		$this->data+=[
 			'user' => Users::find($id),
-			'breadcrumb'=>'<li class="breadcrumb-item"><a href="'. route('admin.dashboard') .'"><i class="fa fa-home"></i> '.__('components.dashboard').'</a></li><li class="breadcrumb-item"><a href="'. route('admin.users.index') .'"><i class="fa fa-user-friends"></i> '.__('breadcrumb.users').'</a></li><li class="breadcrumb-item active"><i class="fa fa-pencil"></i> '.__('breadcrumb.edit').' '. Users::find($id)->name.'</li>',
+			'breadcrumb'=>'<li class="breadcrumb-item"><a href="'. route('admin.dashboard') .'"><i class="fa fa-home"></i> '.__('components.dashboard').'</a></li><li class="breadcrumb-item"><a href="'. route('admin.users.index') .'"><i class="fa fa-user-friends"></i> '.__('components.users').'</a></li><li class="breadcrumb-item active"><i class="fa fa-pencil"></i> '.__('breadcrumb.edit').' '. Users::find($id)->name.'</li>',
 		];
 		return view('admin.users.password',$this->data);
 	}
@@ -217,20 +214,26 @@ class UsersController extends Controller
 		// Validate Post Data
 		$validator = Validator::make($r->all(), [
 			'password' => 'required|min:6',
-			'confirm_password' => 'required_with:password|same:password|min:6',
+			'confirm_password' => 'required|same:password|min:6',
 		]);
 		if ($validator->fails()) {
 			return redirect()->back()
 				->withErrors($validator)
 				->withInput();
 		}
-		// Update Item
-		$user = Users::find($id);
-		$user->password = Hash::make($r->password);
-		$user->save();
-		// redirect
-		return redirect()->route('admin.users.index')
-			->with('success', __('alert.updateSuccess') . $r->name);
+
+		if (Hash::check($r->current_password, Auth::user()->password)) {
+			// Update Item
+			$user = Users::find($id);
+			$user->password = Hash::make($r->password);
+			$name = $user->name;
+			$user->save();
+			// redirect
+			return redirect()->route('admin.users.index')
+				->with('success', __('alert.updateSuccess') . $r->name);
+		}else{
+			return redirect()->back()->withErrors( __('alert.wrongCurrentPassword') . $name );
+		}
 	}
 
 	public function status(Request $r, Users $users, $id)

@@ -26,10 +26,8 @@ class AdministratorController extends Controller
 	}
 	
 	public function dashboard(){
-		$this->data=[
+		$this->data +=[
 			'breadcrumb'=>'<li class="breadcrumb-item active">Dashboards</li>',
-			'm'=>'dashboard',
-			'sm'=>'home',
 		];
 		return view('admin.dashboard',$this->data);
 	}

@@ -23,13 +23,7 @@
 		}
 
 		#img-upload{
-		    width: 100%;
-		}
-
-		.sidenav .nav-link-text{
-			white-space: nowrap; 
-		  overflow: hidden;
-		  text-overflow: ellipsis;
+			width: 100%;
 		}
 	</style>
 @endsection
@@ -48,15 +42,15 @@
 			<div class="row justify-content-center">
 				<div class="col-sm-6">
 					<section class="bg-white-content">
-		        <img id='img-upload' src="/images/users/{{$user->image}}" />
-		        <div class="input-group mt-2">
-		            <span class="input-group-btn">
-		                <span class="btn btn-default btn-file">
-		                    Browse… <input type="file" id="imgInp" name="user_image">
-		                </span>
-		            </span>
-		            <input type="text" class="form-control" readonly>
-		        </div>
+						<img id='img-upload' style="border: 1px solid red;" src="/images/users/{{$user->image}}" />
+						<div class="input-group mt-2">
+							<span class="input-group-btn">
+								<span class="btn btn-default btn-file">
+									Browse… <input type="file" id="imgInp" name="user_image">
+								</span>
+							</span>
+							<input type="text" class="form-control" readonly>
+						</div>
 					</section>
 				</div>
 			</div>

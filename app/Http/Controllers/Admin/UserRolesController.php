@@ -6,6 +6,7 @@ use App\Models\Users;
 use App\Models\UserRoles;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Validator;
 
 class UserRolesController extends Controller
 {
@@ -16,7 +17,7 @@ class UserRolesController extends Controller
         $this->data=[
             'm'=>'manage_users',
             'sm'=>'user_roles',
-            'title'=>'កំណត់ឋានៈ',
+            'title'=> ''.__('components.userRoles').'',
         ];
     }
 
@@ -29,12 +30,12 @@ class UserRolesController extends Controller
     public function index()
     {
         $this->data += [
-            'breadcrumb'=>'<li><a href="'. route('home') .'"><i class="fa fa-home"></i> ផ្ទាំងដើម</a></li><li class="active"><i class="fa fa-user-cog"></i> កំណត់ឋានៈ</li>',
+            'breadcrumb'=>'<li class="breadcrumb-item"><a href="'. route('admin.dashboard') .'"><i class="fa fa-home"></i> '.__('components.dashboard').'</a></li><li class="breadcrumb-item active"><i class="fa fa-user-cog"></i> '.__('components.userRoles').'</li>',
 
             // Select Data From Table
             'users' => Users::orderBy('user_role_id', 'desc')->get(),
         ];
-        return view('roles.index',$this->data);
+        return view('admin.roles.index',$this->data);
     }
 
     /**
@@ -42,14 +43,14 @@ class UserRolesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function edit($id)
     {
         $this->data+=[
             'user' => Users::find($id),
             'roles' => userRoles::orderBy('id', 'asc')->get(),
-            'breadcrumb'=>'<li><a href="'. route('home') .'"><i class="fa fa-home"></i> ផ្ទាំងដើម</a></li><li><a href="'. route('roles.index') .'"><i class="fa fa-user-cog"></i> កំណត់ឋានៈ</a></li><li class="active"><i class="fa fa-pencil"></i> កែប្រែ៖ '. Users::find($id)->name.'</li>',
+            'breadcrumb'=>'<li class="breadcrumb-item"><a href="'. route('admin.dashboard') .'"><i class="fa fa-home"></i> '.__('components.dashboard').'</a></li><li class="breadcrumb-item"><a href="'. route('admin.roles.index') .'"><i class="fa fa-user-cog"></i> '.__('components.userRoles').'</a></li><li class="breadcrumb-item active"><i class="fa fa-pencil"></i> '.__('breadcrumb.edit').' '. Users::find($id)->name.'</li>',
         ];
-        return view('roles.edit',$this->data);
+        return view('admin.roles.edit',$this->data);
     }
 
     /**
@@ -59,7 +60,7 @@ class UserRolesController extends Controller
      * @param  \App\Models\UserRoles  $userRoles
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $r, UserRoles $userRoles)
+    public function update(Request $r, UserRoles $userRoles, $id)
     {
         // Validate Post Data
         $validator = Validator::make($r->all(), [
@@ -71,14 +72,18 @@ class UserRolesController extends Controller
                 ->withInput();
         }
 
-        // Update Item
-        $roles = Users::find($id);
-        $roles->user_role_id = $r->user_role_id;
-        $roles->save();
-
-    // redirect
-        return redirect()->route('roles.index')
-            ->with('success', 'ឋានៈបានកែប្រែដោយជោគជ័យ៖ ' . $r->name);
+		if (Auth::user()->user_role_id ==1) {
+            // Update Item
+            $roles = Users::find($id);
+            $roles->user_role_id = $r->user_role_id;
+            $roles->save();
+            // redirect
+            return redirect()->route('admin.roles.index')
+                ->with('success', __('alert.updateSuccess') . $r->name);
+		}else{
+			return redirect()->route('admin.users.index')
+				->with('error', __('alert.userPermission') );
+		}
     }
 
 }

@@ -30,6 +30,7 @@
         "jquery-validation": "^1.19.0",
         "jquery.scrollbar": "^0.2.11",
         "js-cookie": "^2.2.0",
-        "moment": "^2.23.0"
+        "moment": "^2.23.0",
+        "sweetalert2": "^7.33.1"
     }
 }

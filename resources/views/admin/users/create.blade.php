@@ -24,26 +24,26 @@
 						<div class="col-sm-12">
 							<div class="form-group {{(($errors->has('name'))?'has-error':'')}}">
 								<label class="control-label">{{ __('users.name') }} <small>*</small></label>
-								<input class="form-control nbr" type="text" name="name" placeholder="name" value="{{ ((count($errors) > 0) ? old('name') : '') }}" autocomplete="off" required />
+								<input class="form-control" type="text" name="name" placeholder="name" value="{{ ((count($errors) > 0) ? old('name') : '') }}" autocomplete="off" required />
 							</div>
 						</div>
 						<div class="col-sm-12">
 							<div class="form-group {{(($errors->has('email'))?'has-error':'')}}">
-								<label for="">{{ __('users.email') }} <small>*</small></label>
-								<input class="form-control nbr" type="text" name="email" placeholder="email" value="{{ ((count($errors) > 0) ? old('email') : '') }}" autocomplete="off" required="" />
+								<label>{{ __('users.email') }} <small>*</small></label>
+								<input class="form-control" type="text" name="email" placeholder="email" value="{{ ((count($errors) > 0) ? old('email') : '') }}" autocomplete="off" required="" />
 							</div>
 						</div>
 
 						<div class="col-sm-12">
 							<div class="form-group {{(($errors->has('password'))?'has-error':'')}}">
-								<label for="">{{ __('users.password') }} <small>*</small></label>
-								<input class="form-control nbr" type="password" name="password" placeholder="password" autocomplete="off" required="" />
+								<label>{{ __('users.password') }} <small>*</small></label>
+								<input class="form-control" type="password" name="password" placeholder="password" autocomplete="off" required="" />
 							</div>
 						</div>
 						<div class="col-sm-12">
 							<div class="form-group {{(($errors->has('confirm_password'))?'has-error':'')}}">
-								<label for="">{{ __('users.confirm_password') }} <small>*</small></label>
-								<input class="form-control nbr" type="password" name="confirm_password" placeholder="re-password" autocomplete="off" required="" />
+								<label>{{ __('users.confirm_password') }} <small>*</small></label>
+								<input class="form-control" type="password" name="confirm_password" placeholder="re-password" autocomplete="off" required="" />
 							</div>
 						</div>
 
@@ -52,8 +52,8 @@
 					<div class="col-sm-6">
 						<div class="col-sm-12">
 							<div class="form-group {{(($errors->has('gender'))?'has-error':'')}}">
-								<label for="">{{ __('users.gender') }} <small>*</small></label>
-								<select name="gender" class="form-control nbr select2" required>
+								<label>{{ __('users.gender') }} <small>*</small></label>
+								<select name="gender" class="form-control" required>
 									<option value="">-- {{ __('users.chooseGender') }} --</option>
 										<option value="1" {{ ((count($errors) > 0) && (old('gender') == 1)) ? 'selected':'' }}>{{ __('users.male') }}</option>
 										<option value="2" {{ ((count($errors) > 0) && (old('gender') == 2)) ? 'selected':'' }}>{{ __('users.female') }}</option>
@@ -64,14 +64,14 @@
 
 						<div class="col-sm-12">
 							<div class="form-group {{(($errors->has('phone'))?'has-error':'')}}">
-								<label for="">{{ __('users.phone') }} <small>*</small></label>
-								<input class="form-control nbr" type="text" name="phone" placeholder="phone" value="{{ ((count($errors) > 0) ? old('phone') : '') }}" autocomplete="off" required="" />
+								<label>{{ __('users.phone') }} <small>*</small></label>
+								<input class="form-control" type="text" name="phone" placeholder="phone" value="{{ ((count($errors) > 0) ? old('phone') : '') }}" autocomplete="off" required="" />
 							</div>
 						</div>
 						<div class="col-sm-12">
 							<div class="form-group">
-								<label for="">{{ __('users.description') }}</label>
-								<textarea class="form-control nbr" name="description" style="height: 145px;" placeholder="description">{{ ((count($errors) > 0) ? old('description') : '') }}</textarea>
+								<label>{{ __('users.description') }}</label>
+								<textarea class="form-control" name="description" style="height: 145px;" placeholder="description">{{ ((count($errors) > 0) ? old('description') : '') }}</textarea>
 							</div>
 						</div>
 					</div><!-- /.column -->

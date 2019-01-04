@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->integer('gender')->default('1');
             $table->integer('status')->default('1');
             $table->text('description')->nullable();
-            $table->unsignedInteger('user_role_id');
+            $table->unsignedInteger('user_role_id')->default('3');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

@@ -8,12 +8,12 @@
 
 @section('content')
 	
-	<section class="bg-white">
+	<section class="bg-white-content">
 
 		<!-- Add Button & Error Message -->
 		@component('comps.btnAdd')
 			@slot('btnAdd')
-				{{route('users.create')}}
+				{{route('admin.users.create')}}
 			@endslot
 		@endcomponent
 		
@@ -22,10 +22,9 @@
 		<table class="table table-striped table-hover" id="dataTable">
 			<thead>
 				<tr>
-					<th width="5%">N&deg;</th>
-					<th>ឈ្មោះ</th>
-					<th>ឋានៈ</th>
-					<th>តួនាទី</th>
+					<th width="5%">{{ __('components.tableNumber') }}</th>
+					<th>{{ __('users.name') }}</th>
+					<th>{{ __('components.userRoles') }}</th>
 					<th width="10%">សកម្មភាព</th>
 				</tr>
 			</thead>
@@ -34,10 +33,9 @@
 				<tr>
 					<td>{{ $i+1 }}</td>
 					<td>{{ $user->name }}</td>
-					<td>{{ $user->userrole->ur_name }}</td>
-					<td>{{ $user->position }}</td>
+					<td>{{ $user->role->ur_name }}</td>
 					<td class="action">
-						<a href="{{route('roles.edit',$user->id)}}" title="Edit" class="edit text-info">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-pencil-alt"></i></a>
+						<a href="{{route('admin.roles.edit',$user->id)}}" title="Edit" class="btn btn-info btn-sm mr-0"><i class="fa fa-pencil-alt"></i></a>
 					</td>
 				</tr>
 				@endforeach

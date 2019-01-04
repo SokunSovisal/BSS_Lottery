@@ -7,7 +7,7 @@
 		<!-- CSRF Token -->
 		<meta name="csrf-token" content="{{ csrf_token() }}">
 
-		<title>{{ config('app.name', 'Laravel') }}</title>
+		<title>{{$title}}</title>
 
 		<!-- Styles -->
 		<link href="{{ asset('css/admin.css') }}" rel="stylesheet">
@@ -62,9 +62,9 @@
 						<!-- Navigation -->
 						<ul class="navbar-nav mb-md-3">
 							<li class="nav-item">
-								<a class="nav-link {{ $m == 'manage_users' ? 'active' : '' }}" href="#navbar-users" data-toggle="collapse" role="button" aria-expanded="{{$m =='manage_users'?'true':'false'}}" aria-controls="navbar-users">
+								<a class="nav-link {{ $m == 'manage_users' ? 'active' : '' }} waves-effect" href="#navbar-users" data-toggle="collapse" role="button" aria-expanded="{{$m =='manage_users'?'true':'false'}}" aria-controls="navbar-users">
 									<i class="fa fa-users text-info"></i>
-									<span class="nav-link-text">{{ __('components.manage_users') }}</span>
+									<span class="nav-link-text">{{ __('components.manageUsers') }}</span>
 								</a>
 								<div class="collapse {{$m =='manage_users'?'show':''}}" id="navbar-users">
 									<ul class="nav nav-sm flex-column">
@@ -72,7 +72,7 @@
 											<a href="{{route('admin.users.index')}}" class="nav-link {{$sm =='users'?'active':''}}">{{ __('components.users') }}</a>
 										</li>
 										<li class="nav-item">
-											<a href="{{route('admin.roles.index')}}" class="nav-link"></i>{{ __('components.user_roles') }}</a>
+											<a href="{{route('admin.roles.index')}}" class="nav-link {{$sm =='user_roles'?'active':''}}"></i>{{ __('components.userRoles') }}</a>
 										</li>
 									</ul>
 								</div>
@@ -146,8 +146,11 @@
 							<li class="nav-item dropdown">
 								<a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									<div class="media align-items-center">
-										<span class="avatar avatar-sm rounded-circle waves-effect waves-light text-center" style="font-size: 18px; line-height: 2em;">
-											<i class="fa fa-user"></i>
+										<span class="avatar avatar-sm rounded-circle waves-effect waves-light">
+											<div style="display: block; height: 100%; background: url(/images/users/{{ Auth::user()->image }}) center center; background-size: cover;">
+
+											</div>
+											<!-- <img alt="Image placeholder" style="border: 1px solid red;" src="/images/users/{{ Auth::user()->image }}"> -->
 										</span>
 										<div class="media-body ml-2 d-none d-lg-block">
 											<span class="mb-0 text-sm">{{ Auth::user()->name }}</span>
@@ -160,7 +163,7 @@
 									</div>
 									<a href="#!" class="dropdown-item">
 										<i class="fa fa-user"></i>
-										<span class="{{ session('locale') == 'kh' ? 'khmerkoulen' : '' }}">{{ __('components.my_account') }}</span>
+										<span class="{{ session('locale') == 'kh' ? 'khmerkoulen' : '' }}">{{ __('components.myAccount') }}</span>
 									</a>
 									<div class="dropdown-divider"></div>
 
@@ -186,8 +189,8 @@
 	</div>
 	<!-- Scripts -->
 	<script src="{{ asset('js/js.cookie.js') }}"></script>
-	<script src="{{ asset('js/admin.js') }}" defer></script>
-	<script src="{{ asset('js/javascript.js') }}" defer></script>
+	<script src="{{ asset('js/admin.js') }}"></script>
+	<script src="{{ asset('js/'. (session("locale")=="kh"? "kh" : "en") .'-javascript.js') }}"></script>
 	@yield('js')
 	
 </body>

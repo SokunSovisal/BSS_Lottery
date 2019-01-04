@@ -23,6 +23,7 @@ if (token) {
 window.jsscrollbar = require('jquery.scrollbar');
 window.jsvalidate = require('jquery-validation');
 window.moment = require('moment');
+window.swal = require('sweetalert2');
 window.zdt = require('datatables.net');
 window.zdtbs = require('datatables.net-bs4');
 window.zbsmt = require('./bootstrap-material-design');
