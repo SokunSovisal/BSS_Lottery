@@ -17,18 +17,16 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('image', 255);
-            $table->string('phone', 255);
-            $table->string('position', 255);
-            $table->float('salary');
+            $table->string('image', 191)->default('default_user.png');
+            $table->string('phone', 56)->nullable();
             $table->integer('gender')->default('1');
             $table->integer('status')->default('1');
             $table->text('description')->nullable();
+            $table->unsignedInteger('user_role_id');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
-            $table->unsignedInteger('user_role_id');
 
             $table->foreign('user_role_id')
                 ->references('id')->on('user_roles')

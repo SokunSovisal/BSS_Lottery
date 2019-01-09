@@ -11,16 +11,16 @@ class AdministratorController extends Controller
 	public function __construct()
 	{
 		$this->data=[
-			'title'=>'សូមស្វាគមន៍',
+			'm'=>'dashboard',
+			'sm'=>'users',
+			'title'=> __('breadcrumb.users'),
 		];
 	}
 	
 	
 	public function index(){
 		$this->data=[
-			'breadcrumb'=>'',
-			'm'=>'home',
-			'sm'=>'home',
+			'breadcrumb'=>'<li class="breadcrumb-item active"><i class="fa fa-home"></i> '.__('components.dashboard').'</li>',
 		];
 		return view('admin.home',$this->data);
 	}

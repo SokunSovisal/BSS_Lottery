@@ -2,7 +2,13 @@
 
 @section('css')
 	<style type="text/css">
-	
+		table.calculator{
+			/*width: 100px;*/
+			border: 1px solid red;
+		}
+		table.calculator tr td .btn{
+			border-radius: 2px;
+		}
 	</style>
 @endsection
 
@@ -12,6 +18,40 @@
 		<div class="container-fluid">
 			<form>
 				<div class="row justify-content-center">
+	        <div class="form-group col-sm-9">
+	        	<table class="calculator">
+	        		<tr>
+	        			<td><button class="btn btn-warning btn-block" onclick="getSign('*')" type="button">*</button></td>
+	        			<td><button class="btn btn-warning btn-block" onclick="getSign('x')" type="button">x</button></td>
+	        			<td><button class="btn btn-warning btn-block" onclick="getSign('>')" type="button">></button></td>
+	        		</tr>
+	        		<tr>
+	        			<td><button class="btn btn-warning btn-block" onclick="getSign('.')" type="button">.</button></td>
+	        			<td><button class="btn btn-warning btn-block" onclick="getSign('|')" type="button">|</button></td>
+	        			<td><button class="btn btn-warning btn-block" onclick="getSign('=>')" type="button">=></button></td>
+	        		</tr>
+	        		<tr>
+	        			<td><button class="btn btn-info btn-block" onclick="getSign('1')" type="button">1</button></td>
+	        			<td><button class="btn btn-info btn-block" onclick="getSign('2')" type="button">2</button></td>
+	        			<td><button class="btn btn-info btn-block" onclick="getSign('3')" type="button">3</button></td>
+	        		</tr>
+	        		<tr>
+	        			<td><button class="btn btn-info btn-block" onclick="getSign('4')" type="button">4</button></td>
+	        			<td><button class="btn btn-info btn-block" onclick="getSign('5')" type="button">5</button></td>
+	        			<td><button class="btn btn-info btn-block" onclick="getSign('6')" type="button">6</button></td>
+	        		</tr>
+	        		<tr>
+	        			<td><button class="btn btn-info btn-block" onclick="getSign('7')" type="button">7</button></td>
+	        			<td><button class="btn btn-info btn-block" onclick="getSign('8')" type="button">8</button></td>
+	        			<td><button class="btn btn-info btn-block" onclick="getSign('9')" type="button">9</button></td>
+	        		</tr>
+	        		<tr>
+	        			<td></td>
+	        			<td><button class="btn btn-info btn-block" onclick="getSign('0')" type="button">0</button></td>
+	        			<td></td>
+	        		</tr>
+	        	</table>
+	        </div>
 	        <div class="form-group col-sm-4">
 	          <label class="form-control-label" for="input_source">Input</label>
 	          <textarea class="form-control rounded-0" id="input_source" rows="10" onkeyup="analyze_input(this.value)"></textarea>
@@ -31,6 +71,10 @@
 @endsection
 @section('js')
 	<script type="text/javascript">
+		
+		function getSign(sign) { $('#input_source').append(sign).focus(); }
+
+
 		function analyze_input(input_text){
 			v_treng = false;
 			v_kun = false;
@@ -43,7 +87,7 @@
 			v_ors_double = false;
 			if(input_text.indexOf(".") >0){
 				v_treng = true;
-				alert('treng');
+				// alert('treng');
 			}else if(input_text.indexOf("*") >0){
 				v_kun = true;
 				// alert('kun');
