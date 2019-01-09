@@ -1,0 +1,9 @@
+
+*:not(i){
+	font-family: 'khmerbtb' !important;
+	font-weight: normal !important;
+}
+h1,h2,h3,h4,h5,h6,
+.nav-link-text,th,.breadcrumb-item,.breadcrumb-item.active{
+	font-family: 'khmerkoulen' !important;
+}

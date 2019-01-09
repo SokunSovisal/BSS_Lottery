@@ -26,8 +26,10 @@
     },
     "dependencies": {
         "bootstrap-material-design": "^4.1.1",
+        "datatables.net-bs4": "^1.10.19",
         "jquery-validation": "^1.19.0",
         "jquery.scrollbar": "^0.2.11",
-        "js-cookie": "^2.2.0"
+        "js-cookie": "^2.2.0",
+        "moment": "^2.23.0"
     }
 }

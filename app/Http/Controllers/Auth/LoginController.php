@@ -25,12 +25,12 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/admin';
+    protected $redirectTo = '/admin/dashboard';
 
 
     protected function authenticated()
     {
-        return redirect('/admin');
+        return redirect('/admin/dashboard');
     }
 
     /**
